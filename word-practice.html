@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Word Guessing Game</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to bottom, #36d1dc, #5b86e5);
+      }
+      #game-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      textarea,
+      input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s ease-in-out;
+      }
+      button {
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: background-color 0.3s ease-in-out;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      #word-display {
+        font-size: 24px;
+        margin-bottom: 20px;
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
+      }
+      #word-display.hidden {
+        opacity: 0;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game-container">
+      <h1>Word Guessing Game V2</h1>
+      <textarea
+        id="word-list-input"
+        placeholder="Enter word list here (one word per line)"
+      ></textarea>
+      <button id="set-word-list">Set Word List</button>
+      <div id="word-display"></div>
+      <input type="text" id="user-input" placeholder="Type your guess here" />
+    </div>
+
+    <script>
+      let wordList = [];
+      let correctWord = "";
+      let animationTimeout;
+
+      const getRandomWord = () => {
+        correctWord = wordList[Math.floor(Math.random() * wordList.length)];
+        document.getElementById("word-display").textContent = correctWord;
+        document.getElementById("word-display").classList.remove("hidden");
+        document.getElementById("user-input").value = "";
+      };
+
+      const checkInput = () => {
+        const userInput = document
+          .getElementById("user-input")
+          .value.toLowerCase();
+        if (userInput === correctWord.toLowerCase()) {
+          document.getElementById("word-display").classList.add("hidden");
+          clearTimeout(animationTimeout);
+          animationTimeout = setTimeout(getRandomWord, 500);
+        }
+      };
+
+      const setWordList = () => {
+        const wordListInput = document.getElementById("word-list-input").value;
+        if (wordListInput.trim() === "") {
+          wordList = [
+            "abroad",
+            "access",
+            "achieve",
+            "achievement",
+            "acknowledgment",
+            "additional",
+            "admiring",
+            "attach",
+            "attain",
+            "basket",
+            "beach",
+            "beat",
+            "beautiful",
+            "because",
+            "bed",
+            "before",
+            "belated",
+            "believe",
+            "belong",
+            "below",
+            "benefit",
+            "best",
+            "better",
+            "billion",
+            "blood",
+            "bore",
+            "bottle",
+            "branches",
+            "breed",
+            "brother",
+            "bucket",
+            "building",
+            "built",
+            "capital",
+            "captain",
+            "captivate",
+            "capture",
+            "cardiac",
+            "careless",
+            "carnival",
+            "carry",
+            "casual",
+            "categorize",
+            "ceremony",
+            "certain",
+            "challenge",
+            "chief",
+            "children",
+            "church",
+            "circle",
+            "clap",
+            "coat",
+            "column",
+            "communicate",
+            "concentrate",
+            "conclude",
+            "concrete",
+            "confuse",
+            "congested",
+            "congratulate",
+            "cordial",
+            "cravings",
+            "create",
+            "crowd",
+            "crush",
+            "death",
+            "decide",
+            "defeat",
+            "determined",
+            "different",
+            "disappear",
+            "divide",
+            "east",
+            "encounter",
+            "entertainment",
+            "experience",
+            "fabulous",
+            "family",
+            "fantastic",
+            "farm",
+            "fever",
+            "flowers",
+            "forward",
+            "freedom",
+            "frequent",
+            "friendly",
+            "friends",
+            "fruits",
+            "genuine",
+            "glory",
+            "government",
+            "great",
+            "greet",
+            "ground",
+            "group",
+            "growth",
+            "guess",
+            "guest",
+            "hang",
+            "harsh",
+            "head",
+            "health",
+            "hurry",
+            "idea",
+            "illuminate",
+            "important",
+            "impossible",
+            "incident",
+            "industry",
+            "infrastructure",
+            "interest",
+            "interior",
+            "interval",
+            "intimidating",
+            "island",
+            "kitchen",
+            "land",
+            "language",
+            "launch",
+            "leader",
+            "lean",
+            "led",
+            "little",
+            "locate",
+            "loud",
+            "machine",
+            "magnificent",
+            "marine",
+            "materials",
+            "matter",
+            "measure",
+            "medicine",
+            "north",
+            "official",
+            "often",
+            "oxygen",
+            "pamper",
+            "paragraph",
+            "peace",
+            "pen",
+            "penetrate",
+            "people",
+            "perhaps",
+            "permit",
+            "person",
+            "phrase",
+            "place",
+            "plant",
+            "plural",
+            "poem",
+            "polite",
+            "pollute",
+            "possible",
+            "prefix",
+            "probably",
+            "problem",
+            "produce",
+            "protection",
+            "raft",
+            "realise",
+            "reflection",
+            "regain",
+            "rhythm",
+            "rose",
+            "rule",
+            "sail",
+            "saw",
+            "scare",
+            "scientist",
+            "sea",
+            "seat",
+            "secure",
+            "security",
+            "sentence",
+            "settle",
+            "shade",
+            "shadow",
+            "shape",
+            "sharp",
+            "shine",
+            "sight",
+            "silent",
+            "similar",
+            "smile",
+            "smooth",
+            "soap",
+            "south",
+            "special",
+            "sports",
+            "steal",
+            "steel",
+            "story",
+            "street",
+            "sudden",
+            "suffix",
+            "super",
+            "surrender",
+            "tackle",
+            "talent",
+            "teach",
+            "teenage",
+            "television",
+            "tell",
+            "tender",
+            "together",
+            "tomorrow",
+            "transport",
+            "treat",
+            "usually",
+            "various",
+            "vegetables",
+            "vehicle",
+            "victory",
+            "voice",
+            "wander",
+            "watch",
+            "waves",
+            "west",
+            "wheels",
+            "whoever",
+            "winner",
+            "wonder",
+            "worst",
+            "yawn",
+            "yesterday",
+            "resignation",
+            "psychology",
+            "psychiatrist",
+            "properties",
+            "binary",
+            "credential",
+            "dictionary",
+            "experience",
+            "quality",
+            "qualities",
+            "necessary",
+            "territory",
+            "foundation",
+            "punishable",
+            "causing",
+            "dangerous",
+            "obstruction",
+            "horizontal",
+            "vertical",
+            "regularization",
+            "except",
+            "accept",
+            "agreement",
+            "announcements",
+            "weekend",
+            "productivity",
+            "present",
+            "restriction",
+            "obstacles",
+            "achievements",
+            "opportunity",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "saturday",
+            "january",
+            "february",
+            "april",
+            "august",
+            "september",
+            "october",
+            "november",
+            "december",
+            "seven",
+            "ten",
+            "eleven",
+            "twelve",
+            "thirteen",
+            "fourteen",
+            "fifteen",
+            "sixteen",
+            "seventeen",
+            "eighteen",
+            "nineteen",
+            "twenty",
+            "hundred",
+            "thousand",
+            "crore",
+            "million",
+            "billion",
+            "neither",
+            "negative",
+            "positive",
+            "gentleman",
+            "success",
+            "failure",
+            "application",
+            "suggested",
+            "suggestion",
+            "expectation",
+            "implementation",
+            "maintenance",
+            "migration",
+          ];
+        } else {
+          wordList = wordListInput
+            .split("\n")
+            .map((word) => word.trim().replace(/^\d+\.\s*/, ""))
+            .filter((word) => word !== "");
+        }
+        getRandomWord();
+      };
+
+      window.onload = () => {
+        document
+          .getElementById("set-word-list")
+          .addEventListener("click", setWordList);
+        document
+          .getElementById("user-input")
+          .addEventListener("input", checkInput);
+        document.getElementById("user-input").focus();
+      };
+    </script>
+  </body>
+</html>
