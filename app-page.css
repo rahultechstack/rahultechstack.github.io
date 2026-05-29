@@ -1,0 +1,535 @@
+:root {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface-elevated: #eef2f7;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-dim: rgba(2, 132, 199, 0.1);
+  --border: rgba(15, 23, 42, 0.1);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 16px 40px rgba(15, 23, 42, 0.1);
+  --carousel-gap: min(52vw, 300px);
+  --carousel-gap-far: min(88vw, 520px);
+  --carousel-gap-mobile: 150px;
+  --carousel-gap-far-mobile: 260px;
+  --carousel-near: min(40vw, 220px);
+  --carousel-near-mobile: 120px;
+  --font: "DM Sans", system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(2, 132, 199, 0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 80%, rgba(14, 165, 233, 0.06), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+header {
+  padding: 1.5rem 0 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.back-link svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem 0 1.5rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero-tagline {
+  margin: 0 auto;
+  max-width: 32rem;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.slider {
+  width: 100%;
+  margin: 1.5rem 0 0.5rem;
+  padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+}
+
+.slider input {
+  display: none;
+}
+
+.testimonials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: clamp(280px, 52vw, 420px);
+  perspective: 1200px;
+  overflow: hidden;
+  padding: 0.5rem clamp(0.75rem, 4vw, 2rem);
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.testimonials .item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  border-radius: var(--radius);
+  border: 2px solid var(--border);
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.45s, box-shadow 0.45s;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  user-select: none;
+  background: var(--surface);
+}
+
+.testimonials .item img {
+  display: block;
+  width: clamp(160px, 42vw, 260px);
+  height: auto;
+  vertical-align: middle;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 0;
+}
+
+.dots label {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  transition: transform 0.2s, background 0.2s, width 0.2s;
+}
+
+.dots label:hover {
+  background: var(--text-muted);
+}
+
+.content-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+}
+
+.content-card h2 {
+  margin: 0 0 1rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.app-description {
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.formats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.format-tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-elevated);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.app-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-sm);
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.app-link:active {
+  transform: scale(0.98);
+}
+
+.app-link--primary {
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.3);
+}
+
+.app-link--primary:hover {
+  background: linear-gradient(135deg, #0369a1, #0284c7);
+  box-shadow: 0 6px 24px rgba(2, 132, 199, 0.35);
+}
+
+.app-link--secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.app-link--secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+footer {
+  text-align: center;
+  padding-top: 2.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Active dot — 3 slides */
+.slider--3 #t-1:checked ~ .dots label[for="t-1"],
+.slider--3 #t-2:checked ~ .dots label[for="t-2"],
+.slider--3 #t-3:checked ~ .dots label[for="t-3"] {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.slider--3 #t-1:checked ~ .testimonials label[for="t-3"],
+.slider--3 #t-2:checked ~ .testimonials label[for="t-1"],
+.slider--3 #t-3:checked ~ .testimonials label[for="t-2"] {
+  transform: translate(calc(-50% - var(--carousel-gap)), -50%) scale(0.82) rotateY(18deg);
+  opacity: 0.65;
+  z-index: 1;
+}
+
+.slider--3 #t-1:checked ~ .testimonials label[for="t-2"],
+.slider--3 #t-2:checked ~ .testimonials label[for="t-3"],
+.slider--3 #t-3:checked ~ .testimonials label[for="t-1"] {
+  transform: translate(calc(-50% + var(--carousel-gap)), -50%) scale(0.82) rotateY(-18deg);
+  opacity: 0.65;
+  z-index: 1;
+}
+
+.slider--3 #t-1:checked ~ .testimonials label[for="t-1"],
+.slider--3 #t-2:checked ~ .testimonials label[for="t-2"],
+.slider--3 #t-3:checked ~ .testimonials label[for="t-3"] {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  z-index: 4;
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(2, 132, 199, 0.15);
+}
+
+/* Active dot — 4 slides */
+.slider--4 #t-1:checked ~ .dots label[for="t-1"],
+.slider--4 #t-2:checked ~ .dots label[for="t-2"],
+.slider--4 #t-3:checked ~ .dots label[for="t-3"],
+.slider--4 #t-4:checked ~ .dots label[for="t-4"] {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.slider--4 #t-1:checked ~ .testimonials label[for="t-3"],
+.slider--4 #t-2:checked ~ .testimonials label[for="t-4"],
+.slider--4 #t-3:checked ~ .testimonials label[for="t-1"],
+.slider--4 #t-4:checked ~ .testimonials label[for="t-2"] {
+  transform: translate(calc(-50% + var(--carousel-gap-far)), -50%) scale(0.78) rotateY(-22deg);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.slider--4 #t-1:checked ~ .testimonials label[for="t-2"],
+.slider--4 #t-2:checked ~ .testimonials label[for="t-3"],
+.slider--4 #t-3:checked ~ .testimonials label[for="t-4"],
+.slider--4 #t-4:checked ~ .testimonials label[for="t-1"] {
+  transform: translate(calc(-50% + var(--carousel-near)), -50%) scale(0.82) rotateY(-15deg);
+  opacity: 0.65;
+  z-index: 2;
+}
+
+.slider--4 #t-2:checked ~ .testimonials label[for="t-1"],
+.slider--4 #t-3:checked ~ .testimonials label[for="t-2"],
+.slider--4 #t-4:checked ~ .testimonials label[for="t-3"],
+.slider--4 #t-1:checked ~ .testimonials label[for="t-4"] {
+  transform: translate(calc(-50% - var(--carousel-near)), -50%) scale(0.82) rotateY(15deg);
+  opacity: 0.65;
+  z-index: 2;
+}
+
+.slider--4 #t-3:checked ~ .testimonials label[for="t-1"],
+.slider--4 #t-4:checked ~ .testimonials label[for="t-2"],
+.slider--4 #t-1:checked ~ .testimonials label[for="t-4"] {
+  transform: translate(calc(-50% - var(--carousel-gap-far)), -50%) scale(0.78) rotateY(22deg);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.slider--4 #t-1:checked ~ .testimonials label[for="t-1"],
+.slider--4 #t-2:checked ~ .testimonials label[for="t-2"],
+.slider--4 #t-3:checked ~ .testimonials label[for="t-3"],
+.slider--4 #t-4:checked ~ .testimonials label[for="t-4"] {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  z-index: 4;
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(2, 132, 199, 0.15);
+}
+
+/* Active dot — 5 slides */
+.slider--5 #t-1:checked ~ .dots label[for="t-1"],
+.slider--5 #t-2:checked ~ .dots label[for="t-2"],
+.slider--5 #t-3:checked ~ .dots label[for="t-3"],
+.slider--5 #t-4:checked ~ .dots label[for="t-4"],
+.slider--5 #t-5:checked ~ .dots label[for="t-5"] {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.slider--5 #t-1:checked ~ .testimonials label[for="t-3"],
+.slider--5 #t-2:checked ~ .testimonials label[for="t-4"],
+.slider--5 #t-3:checked ~ .testimonials label[for="t-5"],
+.slider--5 #t-4:checked ~ .testimonials label[for="t-1"],
+.slider--5 #t-5:checked ~ .testimonials label[for="t-2"] {
+  transform: translate(calc(-50% + var(--carousel-gap-far)), -50%) scale(0.78) rotateY(-22deg);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.slider--5 #t-1:checked ~ .testimonials label[for="t-2"],
+.slider--5 #t-2:checked ~ .testimonials label[for="t-3"],
+.slider--5 #t-3:checked ~ .testimonials label[for="t-4"],
+.slider--5 #t-4:checked ~ .testimonials label[for="t-5"],
+.slider--5 #t-5:checked ~ .testimonials label[for="t-1"] {
+  transform: translate(calc(-50% + var(--carousel-near)), -50%) scale(0.82) rotateY(-15deg);
+  opacity: 0.65;
+  z-index: 2;
+}
+
+.slider--5 #t-2:checked ~ .testimonials label[for="t-1"],
+.slider--5 #t-3:checked ~ .testimonials label[for="t-2"],
+.slider--5 #t-4:checked ~ .testimonials label[for="t-3"],
+.slider--5 #t-5:checked ~ .testimonials label[for="t-4"],
+.slider--5 #t-1:checked ~ .testimonials label[for="t-5"] {
+  transform: translate(calc(-50% - var(--carousel-near)), -50%) scale(0.82) rotateY(15deg);
+  opacity: 0.65;
+  z-index: 2;
+}
+
+.slider--5 #t-3:checked ~ .testimonials label[for="t-1"],
+.slider--5 #t-4:checked ~ .testimonials label[for="t-2"],
+.slider--5 #t-5:checked ~ .testimonials label[for="t-3"],
+.slider--5 #t-1:checked ~ .testimonials label[for="t-4"],
+.slider--5 #t-2:checked ~ .testimonials label[for="t-5"] {
+  transform: translate(calc(-50% - var(--carousel-gap-far)), -50%) scale(0.78) rotateY(22deg);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.slider--5 #t-1:checked ~ .testimonials label[for="t-1"],
+.slider--5 #t-2:checked ~ .testimonials label[for="t-2"],
+.slider--5 #t-3:checked ~ .testimonials label[for="t-3"],
+.slider--5 #t-4:checked ~ .testimonials label[for="t-4"],
+.slider--5 #t-5:checked ~ .testimonials label[for="t-5"] {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  z-index: 4;
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(2, 132, 199, 0.15);
+}
+
+/* Active dot — 6 slides */
+.slider--6 #t-1:checked ~ .dots label[for="t-1"],
+.slider--6 #t-2:checked ~ .dots label[for="t-2"],
+.slider--6 #t-3:checked ~ .dots label[for="t-3"],
+.slider--6 #t-4:checked ~ .dots label[for="t-4"],
+.slider--6 #t-5:checked ~ .dots label[for="t-5"],
+.slider--6 #t-6:checked ~ .dots label[for="t-6"] {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.slider--6 #t-1:checked ~ .testimonials label[for="t-3"],
+.slider--6 #t-2:checked ~ .testimonials label[for="t-4"],
+.slider--6 #t-3:checked ~ .testimonials label[for="t-5"],
+.slider--6 #t-4:checked ~ .testimonials label[for="t-6"],
+.slider--6 #t-5:checked ~ .testimonials label[for="t-1"],
+.slider--6 #t-6:checked ~ .testimonials label[for="t-2"] {
+  transform: translate(calc(-50% + var(--carousel-gap-far)), -50%) scale(0.78) rotateY(-22deg);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.slider--6 #t-1:checked ~ .testimonials label[for="t-2"],
+.slider--6 #t-2:checked ~ .testimonials label[for="t-3"],
+.slider--6 #t-3:checked ~ .testimonials label[for="t-4"],
+.slider--6 #t-4:checked ~ .testimonials label[for="t-5"],
+.slider--6 #t-5:checked ~ .testimonials label[for="t-6"],
+.slider--6 #t-6:checked ~ .testimonials label[for="t-1"] {
+  transform: translate(calc(-50% + var(--carousel-near)), -50%) scale(0.82) rotateY(-15deg);
+  opacity: 0.65;
+  z-index: 2;
+}
+
+.slider--6 #t-2:checked ~ .testimonials label[for="t-1"],
+.slider--6 #t-3:checked ~ .testimonials label[for="t-2"],
+.slider--6 #t-4:checked ~ .testimonials label[for="t-3"],
+.slider--6 #t-5:checked ~ .testimonials label[for="t-4"],
+.slider--6 #t-6:checked ~ .testimonials label[for="t-5"],
+.slider--6 #t-1:checked ~ .testimonials label[for="t-6"] {
+  transform: translate(calc(-50% - var(--carousel-near)), -50%) scale(0.82) rotateY(15deg);
+  opacity: 0.65;
+  z-index: 2;
+}
+
+.slider--6 #t-3:checked ~ .testimonials label[for="t-1"],
+.slider--6 #t-4:checked ~ .testimonials label[for="t-2"],
+.slider--6 #t-5:checked ~ .testimonials label[for="t-3"],
+.slider--6 #t-6:checked ~ .testimonials label[for="t-4"],
+.slider--6 #t-1:checked ~ .testimonials label[for="t-5"],
+.slider--6 #t-2:checked ~ .testimonials label[for="t-6"] {
+  transform: translate(calc(-50% - var(--carousel-gap-far)), -50%) scale(0.78) rotateY(22deg);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.slider--6 #t-1:checked ~ .testimonials label[for="t-1"],
+.slider--6 #t-2:checked ~ .testimonials label[for="t-2"],
+.slider--6 #t-3:checked ~ .testimonials label[for="t-3"],
+.slider--6 #t-4:checked ~ .testimonials label[for="t-4"],
+.slider--6 #t-5:checked ~ .testimonials label[for="t-5"],
+.slider--6 #t-6:checked ~ .testimonials label[for="t-6"] {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  z-index: 4;
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(2, 132, 199, 0.15);
+}
+
+@media (max-width: 520px) {
+  :root {
+    --carousel-gap: var(--carousel-gap-mobile);
+    --carousel-gap-far: var(--carousel-gap-far-mobile);
+    --carousel-near: var(--carousel-near-mobile);
+  }
+
+  .slider--3 #t-1:checked ~ .testimonials label[for="t-3"],
+  .slider--3 #t-2:checked ~ .testimonials label[for="t-1"],
+  .slider--3 #t-3:checked ~ .testimonials label[for="t-2"] {
+    transform: translate(calc(-50% - var(--carousel-gap-mobile)), -50%) scale(0.75) rotateY(12deg);
+  }
+
+  .slider--3 #t-1:checked ~ .testimonials label[for="t-2"],
+  .slider--3 #t-2:checked ~ .testimonials label[for="t-3"],
+  .slider--3 #t-3:checked ~ .testimonials label[for="t-1"] {
+    transform: translate(calc(-50% + var(--carousel-gap-mobile)), -50%) scale(0.75) rotateY(-12deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials .item,
+  .dots label,
+  .app-link {
+    transition: none;
+  }
+}
