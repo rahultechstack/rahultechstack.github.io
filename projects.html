@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Portfolio | Project Experience | Full Stack & DevOps Engineer</title>
+    <!-- Google Fonts & simple reset -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f6f9fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 3rem;
+        }
+
+        /* header style */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e3c72, #2b4c7c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #eef2ff;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1e4a76;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(2px);
+        }
+
+        .subhead {
+            color: #4a627a;
+            max-width: 680px;
+            margin: 0.8rem auto 0;
+            font-size: 1.1rem;
+        }
+
+        /* project grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        /* card modern */
+        .project-card {
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 40px -14px rgba(0, 32, 64, 0.15);
+        }
+
+        .card-header {
+            padding: 1.6rem 1.8rem 0.6rem 1.8rem;
+            border-bottom: 1px solid #eef2f8;
+        }
+
+        .project-title {
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: #0c2d48;
+            line-height: 1.3;
+            letter-spacing: -0.3px;
+        }
+
+        .ministry-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #2c6e9e;
+            background: #eef4fc;
+            display: inline-flex;
+            padding: 0.25rem 1rem;
+            border-radius: 50px;
+        }
+
+        .ministry-tag i {
+            font-size: 0.75rem;
+        }
+
+        .card-content {
+            padding: 1.5rem 1.8rem;
+            flex: 1;
+        }
+
+        .description-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .description-list li {
+            margin-bottom: 0.7rem;
+            font-size: 0.9rem;
+            color: #2c3e4e;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .description-list li i {
+            color: #2a7f6e;
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+            width: 18px;
+            flex-shrink: 0;
+        }
+
+        .tech-stack {
+            margin-top: 1.2rem;
+            border-top: 1px dashed #e2e8f0;
+            padding-top: 1.2rem;
+        }
+
+        .tech-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: #5a7184;
+            margin-bottom: 0.7rem;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-badge {
+            background: #eef2fa;
+            padding: 0.25rem 0.75rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #1f5e8e;
+            transition: all 0.1s;
+        }
+
+        .tech-badge i {
+            margin-right: 4px;
+            font-size: 0.7rem;
+        }
+
+        /* special icons or divider */
+        .footer-note {
+            text-align: center;
+            margin-top: 3.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #dce5ec;
+            font-size: 0.85rem;
+            color: #5d7182;
+        }
+
+        @media (max-width: 780px) {
+            .container {
+                padding: 1.5rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* small hover animation */
+        .project-card {
+            will-change: transform;
+        }
+
+        .highlight-icon {
+            background: linear-gradient(145deg, #f0f9ff, #ffffff);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="badge">
+            <i class="fas fa-code-branch"></i> Full Stack · DevOps · GovTech
+        </div>
+        <h1>Professional Project Experience</h1>
+        <div class="subhead">
+            Enterprise‑grade platforms for Indian Government & High‑impact startups — deployment, full‑stack development, and infrastructure management.
+        </div>
+    </div>
+
+    <div class="projects-grid">
+        <!-- 1. Road Safety Committee Portal – MoRTH -->
+        <div class="project-card">
+            <div class="card-header">
+                <div class="project-title">Road Safety Committee Portal</div>
+                <div class="ministry-tag"><i class="fas fa-building"></i> Ministry of Road Transport & Highways (MoRTH)</div>
+            </div>
+            <div class="card-content">
+                <ul class="description-list">
+                    <li><i class="fas fa-check-circle"></i> Full-stack development & maintenance hosted on NIC infrastructure.</li>
+                    <li><i class="fas fa-chalkboard-user"></i> Angular frontend: dashboard management, workflow & data processing.</li>
+                    <li><i class="fas fa-server"></i> Backend REST APIs with Spring Boot & Java, secure API integration.</li>
+                    <li><i class="fas fa-globe"></i> Configured Nginx deployments on Ubuntu/Linux + production support.</li>
+                    <li><i class="fas fa-shield-alt"></i> Performance optimization, issue resolution, govt security protocols.</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-label"><i class="fas fa-cogs"></i> Tech Stack</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge"><i class="fab fa-angular"></i> Angular</span>
+                        <span class="tech-badge"><i class="fab fa-java"></i> Spring Boot</span>
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">REST APIs</span>
+                        <span class="tech-badge"><i class="fas fa-balance-scale"></i> Nginx</span>
+                        <span class="tech-badge"><i class="fab fa-ubuntu"></i> Ubuntu Linux</span>
+                        <span class="tech-badge">NIC Infra</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. VIP Reference Portal – MoRTH -->
+        <div class="project-card">
+            <div class="card-header">
+                <div class="project-title">VIP Reference Portal</div>
+                <div class="ministry-tag"><i class="fas fa-building"></i> Ministry of Road Transport & Highways (MoRTH)</div>
+            </div>
+            <div class="card-content">
+                <ul class="description-list">
+                    <li><i class="fas fa-tasks"></i> Development & support of VIP Reference Management Portal (NIC govt infra).</li>
+                    <li><i class="fas fa-mobile-alt"></i> Responsive Angular frontend components & Spring Boot backend services.</li>
+                    <li><i class="fas fa-link"></i> API integration, Nginx deployment on Linux environments.</li>
+                    <li><i class="fas fa-bug"></i> Issue resolution, application enhancements & production support.</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-label"><i class="fas fa-microchip"></i> Tech Stack</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge"><i class="fab fa-angular"></i> Angular</span>
+                        <span class="tech-badge"><i class="fab fa-java"></i> Spring Boot</span>
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">REST APIs</span>
+                        <span class="tech-badge"><i class="fab fa-linux"></i> Nginx/Linux</span>
+                        <span class="tech-badge">NIC Infra</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. RAMS (Road Asset Management System) – MoRTH -->
+        <div class="project-card">
+            <div class="card-header">
+                <div class="project-title">RAMS</div>
+                <div class="ministry-tag"><i class="fas fa-road"></i> Road Asset Management System – MoRTH</div>
+            </div>
+            <div class="card-content">
+                <ul class="description-list">
+                    <li><i class="fas fa-cubes"></i> Development & maintenance of .NET web app on Windows Server & IIS.</li>
+                    <li><i class="fas fa-database"></i> Backend workflows, database integration & production deployment.</li>
+                    <li><i class="fas fa-chart-line"></i> IIS configuration, bug fixing & application performance improvements.</li>
+                    <li><i class="fas fa-cloud-upload-alt"></i> Supported enterprise govt infrastructure within NIC environments.</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-label"><i class="fas fa-windows"></i> Tech Stack</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">.NET Framework</span>
+                        <span class="tech-badge">ASP.NET</span>
+                        <span class="tech-badge">IIS Server</span>
+                        <span class="tech-badge">Windows Server 2022</span>
+                        <span class="tech-badge">SQL Server</span>
+                        <span class="tech-badge">NIC Infra</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. SLAM – Indian Railways Locomotive Asset Management System -->
+        <div class="project-card">
+            <div class="card-header">
+                <div class="project-title">SLAM – Locomotive AMS</div>
+                <div class="ministry-tag"><i class="fas fa-train"></i> Indian Railways · NIC Cloud</div>
+            </div>
+            <div class="card-content">
+                <ul class="description-list">
+                    <li><i class="fas fa-cloud-upload-alt"></i> Deployment & production hosting on NIC Cloud infrastructure.</li>
+                    <li><i class="fas fa-server"></i> Configured Windows Server 2022 & IIS for .NET web apps.</li>
+                    <li><i class="fas fa-database"></i> Managed SQL Server integration & deployment troubleshooting.</li>
+                    <li><i class="fas fa-tools"></i> Server admin, application publishing & environment setup support.</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-label"><i class="fas fa-choo-choo"></i> Tech Stack</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">.NET Framework</span>
+                        <span class="tech-badge">IIS Server</span>
+                        <span class="tech-badge">Windows Server 2022</span>
+                        <span class="tech-badge">MS SQL Server</span>
+                        <span class="tech-badge">NIC Cloud</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Bhoomi Rashi Portal – Government of India -->
+        <div class="project-card">
+            <div class="card-header">
+                <div class="project-title">Bhoomi Rashi Portal</div>
+                <div class="ministry-tag"><i class="fas fa-map-marked-alt"></i> Government of India · Land Records</div>
+            </div>
+            <div class="card-content">
+                <ul class="description-list">
+                    <li><i class="fas fa-hosting"></i> Deployment & hosting on Windows Server 2022 infrastructure.</li>
+                    <li><i class="fas fa-globe"></i> IIS web server configuration for production hosting.</li>
+                    <li><i class="fas fa-database"></i> SQL Server integration & deployment troubleshooting.</li>
+                    <li><i class="fas fa-chart-simple"></i> Monitored app availability, server performance & stability.</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-label"><i class="fas fa-landmark"></i> Tech Stack</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">.NET Framework</span>
+                        <span class="tech-badge">IIS Server</span>
+                        <span class="tech-badge">Windows Server 2022</span>
+                        <span class="tech-badge">MS SQL Server</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Rozgar.com -->
+        <div class="project-card">
+            <div class="card-header">
+                <div class="project-title">Rozgar.com</div>
+                <div class="ministry-tag"><i class="fas fa-briefcase"></i> EdTech / Job Platform · AWS Cloud</div>
+            </div>
+            <div class="card-content">
+                <ul class="description-list">
+                    <li><i class="fab fa-aws"></i> Production infra on AWS EC2 + S3 for static assets & media.</li>
+                    <li><i class="fas fa-dns"></i> Domain/DNS via GoDaddy & Nginx reverse proxy setup.</li>
+                    <li><i class="fab fa-node-js"></i> Deployed Node.js backend & React.js frontend applications.</li>
+                    <li><i class="fas fa-chart-line"></i> Monitored uptime, server availability & deployment workflows.</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-label"><i class="fas fa-cloud"></i> Tech Stack</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">AWS EC2</span>
+                        <span class="tech-badge">AWS S3</span>
+                        <span class="tech-badge">Nginx</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">React.js</span>
+                        <span class="tech-badge">GoDaddy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. HRMS.Rozgar.com -->
+        <div class="project-card">
+            <div class="card-header">
+                <div class="project-title">HRMS.Rozgar.com</div>
+                <div class="ministry-tag"><i class="fas fa-users"></i> HR Management Platform · Multi-cloud & Mobile</div>
+            </div>
+            <div class="card-content">
+                <ul class="description-list">
+                    <li><i class="fas fa-server"></i> Hosted on AWS EC2, S3 integration for secure storage.</li>
+                    <li><i class="fas fa-network-wired"></i> Nginx reverse proxy, SSL & DNS routing via GoDaddy.</li>
+                    <li><i class="fab fa-react"></i> Node.js + React.js applications in production.</li>
+                    <li><i class="fab fa-google-play"></i> Release management for mobile apps on Play Store & App Store.</li>
+                    <li><i class="fas fa-chart-mixed"></i> Server monitoring, troubleshooting & production support.</li>
+                </ul>
+                <div class="tech-stack">
+                    <div class="tech-label"><i class="fas fa-mobile-alt"></i> Tech Stack</div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">AWS EC2/S3</span>
+                        <span class="tech-badge">Nginx</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">React.js</span>
+                        <span class="tech-badge">GoDaddy</span>
+                        <span class="tech-badge">Mobile Deployment</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Password Drive -->
+
+<div class="project-card">
+    <div class="card-header">
+        <div class="project-title">Password Drive</div>
+        <div class="ministry-tag">
+            <i class="fas fa-lock"></i> Secure Password Management Platform
+        </div>
+    </div>
+    <div class="card-content">
+        <ul class="description-list">
+            <li><i class="fas fa-shield-alt"></i> Developed secure encrypted password storage system with master-password authentication.</li>
+            <li><i class="fas fa-key"></i> Built credential management workflows for secure access & retrieval.</li>
+            <li><i class="fas fa-database"></i> Implemented encrypted local/cloud data storage architecture.</li>
+            <li><i class="fas fa-mobile-alt"></i> Optimized responsive UI/UX for mobile and desktop usage.</li>
+        </ul>
+
+
+    <div class="tech-stack">
+        <div class="tech-label">
+            <i class="fas fa-user-secret"></i> Tech Stack
+        </div>
+
+        <div class="tech-badges">
+            <span class="tech-badge">Flutter</span>
+            <span class="tech-badge">Firebase</span>
+            <span class="tech-badge">Encryption</span>
+            <span class="tech-badge">Secure Storage</span>
+            <span class="tech-badge">REST APIs</span>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 9. Retail India -->
+
+<div class="project-card">
+    <div class="card-header">
+        <div class="project-title">Retail India</div>
+        <div class="ministry-tag">
+            <i class="fas fa-cart-shopping"></i> E-Commerce Platform
+        </div>
+    </div>
+
+
+<div class="card-content">
+    <ul class="description-list">
+        <li><i class="fas fa-store"></i> Developed scalable e-commerce application with product catalog & order workflows.</li>
+        <li><i class="fas fa-credit-card"></i> Integrated Razorpay payment gateway for secure online transactions.</li>
+        <li><i class="fas fa-sync-alt"></i> Implemented real-time inventory management using Firebase services.</li>
+        <li><i class="fas fa-chart-line"></i> Optimized application performance and user checkout experience.</li>
+    </ul>
+
+    <div class="tech-stack">
+        <div class="tech-label">
+            <i class="fas fa-layer-group"></i> Tech Stack
+        </div>
+
+        <div class="tech-badges">
+            <span class="tech-badge">Flutter</span>
+            <span class="tech-badge">Firebase</span>
+            <span class="tech-badge">Firestore</span>
+            <span class="tech-badge">Razorpay</span>
+            <span class="tech-badge">REST APIs</span>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 10. Admob Dashboard -->
+
+<div class="project-card">
+    <div class="card-header">
+        <div class="project-title">Admob Dashboard</div>
+        <div class="ministry-tag">
+            <i class="fas fa-chart-pie"></i> Revenue Analytics Platform
+        </div>
+    </div>
+
+
+<div class="card-content">
+    <ul class="description-list">
+        <li><i class="fas fa-chart-bar"></i> Built analytics dashboard for ad revenue, impressions & CPM tracking.</li>
+        <li><i class="fas fa-bell"></i> Integrated push notifications for revenue and traffic alerts.</li>
+        <li><i class="fas fa-server"></i> Developed backend APIs for real-time analytics processing.</li>
+        <li><i class="fas fa-gauge-high"></i> Optimized dashboard rendering and reporting performance.</li>
+    </ul>
+
+    <div class="tech-stack">
+        <div class="tech-label">
+            <i class="fas fa-database"></i> Tech Stack
+        </div>
+
+        <div class="tech-badges">
+            <span class="tech-badge">Flutter</span>
+            <span class="tech-badge">Firebase</span>
+            <span class="tech-badge">Node.js</span>
+            <span class="tech-badge">Analytics</span>
+            <span class="tech-badge">Push Notifications</span>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 11. PDF Converter -->
+
+<div class="project-card">
+    <div class="card-header">
+        <div class="project-title">PDF Converter</div>
+        <div class="ministry-tag">
+            <i class="fas fa-file-pdf"></i> Document Utility Platform
+        </div>
+    </div>
+
+
+<div class="card-content">
+    <ul class="description-list">
+        <li><i class="fas fa-file-export"></i> Developed PDF conversion utilities including merge, split & image extraction.</li>
+        <li><i class="fas fa-images"></i> Built page-to-image rendering and document preview system.</li>
+        <li><i class="fas fa-folder-open"></i> Implemented efficient file management & storage workflows.</li>
+        <li><i class="fas fa-bolt"></i> Optimized document processing performance for large PDF files.</li>
+    </ul>
+
+    <div class="tech-stack">
+        <div class="tech-label">
+            <i class="fas fa-file"></i> Tech Stack
+        </div>
+
+        <div class="tech-badges">
+            <span class="tech-badge">Flutter</span>
+            <span class="tech-badge">PDF Processing</span>
+            <span class="tech-badge">File System APIs</span>
+            <span class="tech-badge">Document Rendering</span>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 12. Es Viewer -->
+
+<div class="project-card">
+    <div class="card-header">
+        <div class="project-title">Es Viewer</div>
+        <div class="ministry-tag">
+            <i class="fas fa-code"></i> Multi-format File Viewer
+        </div>
+    </div>
+
+
+<div class="card-content">
+    <ul class="description-list">
+        <li><i class="fas fa-file-code"></i> Developed multi-format viewer supporting PDF, HTML, CSV, XML & source-code files.</li>
+        <li><i class="fas fa-eye"></i> Implemented syntax-friendly rendering for developer-oriented file formats.</li>
+        <li><i class="fas fa-folder-tree"></i> Added efficient file navigation & local storage management.</li>
+        <li><i class="fas fa-mobile-screen"></i> Optimized rendering performance across Android devices.</li>
+    </ul>
+
+    <div class="tech-stack">
+        <div class="tech-label">
+            <i class="fas fa-terminal"></i> Tech Stack
+        </div>
+
+        <div class="tech-badges">
+            <span class="tech-badge">Flutter</span>
+            <span class="tech-badge">File Handling</span>
+            <span class="tech-badge">Code Rendering</span>
+            <span class="tech-badge">Local Storage</span>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 13. Status Downloader -->
+
+<div class="project-card">
+    <div class="card-header">
+        <div class="project-title">Status Downloader</div>
+        <div class="ministry-tag">
+            <i class="fab fa-whatsapp"></i> Android Media Utility App
+        </div>
+    </div>
+
+
+<div class="card-content">
+    <ul class="description-list">
+        <li><i class="fas fa-download"></i> Built media downloader for WhatsApp status image/video saving.</li>
+        <li><i class="fas fa-photo-film"></i> Implemented automatic media categorization & local storage management.</li>
+        <li><i class="fas fa-mobile"></i> Integrated Android Content Provider APIs for media access.</li>
+        <li><i class="fas fa-rocket"></i> Optimized lightweight performance and fast media loading.</li>
+    </ul>
+
+    <div class="tech-stack">
+        <div class="tech-label">
+            <i class="fab fa-android"></i> Tech Stack
+        </div>
+
+        <div class="tech-badges">
+            <span class="tech-badge">Android</span>
+            <span class="tech-badge">Java</span>
+            <span class="tech-badge">Content Provider API</span>
+            <span class="tech-badge">Media Storage</span>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 14. My Coordinate -->
+
+<div class="project-card">
+    <div class="card-header">
+        <div class="project-title">My Coordinate</div>
+        <div class="ministry-tag">
+            <i class="fas fa-location-dot"></i> GPS Tracking Utility App
+        </div>
+    </div>
+
+
+<div class="card-content">
+    <ul class="description-list">
+        <li><i class="fas fa-map-location-dot"></i> Developed GPS utility app for real-time coordinate & altitude tracking.</li>
+        <li><i class="fas fa-satellite"></i> Integrated Android location services for accurate positioning.</li>
+        <li><i class="fas fa-compass"></i> Implemented lightweight navigation-focused mobile interface.</li>
+        <li><i class="fas fa-battery-half"></i> Optimized battery-efficient location tracking workflows.</li>
+    </ul>
+
+    <div class="tech-stack">
+        <div class="tech-label">
+            <i class="fas fa-location-crosshairs"></i> Tech Stack
+        </div>
+
+        <div class="tech-badges">
+            <span class="tech-badge">Android</span>
+            <span class="tech-badge">Java</span>
+            <span class="tech-badge">GPS APIs</span>
+            <span class="tech-badge">Location Services</span>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+        
+    </div>
+
+    <!-- Additional summary / unified footer note -->
+    <div class="footer-note">
+        <i class="fas fa-shield-alt"></i> Production-grade deployments across government (NIC, MoRTH, Indian Railways) & high-scale cloud (AWS) · 
+        <strong>Full lifecycle:</strong> development, deployment, configuration, performance, and support.
+    </div>
+</div>
+</body>
+</html>
